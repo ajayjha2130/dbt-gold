@@ -1,0 +1,28 @@
+version: 2
+
+sources:
+  - name: silver
+    database: snowflake_sample_data
+    schema: tpch_sf1
+    tables:
+      - name: customer
+        columns: 
+          - name: c_custkey
+            tests:
+              - unique
+              - not_null
+          - name: c_acctbal
+          - name: c_mktsegment
+  
+models:
+  - name: build_gold_model
+    description: "A gold dbt model"
+    columns:
+      - name: c_mktsegment
+        description: "The primary key for this table"
+        tests:
+            - unique
+            - not_null
+      - name: total_c_acctbal  
+          
+            
